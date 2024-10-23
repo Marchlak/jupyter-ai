@@ -177,6 +177,15 @@ export function SendButton(props: SendButtonProps): JSX.Element {
             </Typography>
           </Box>
         </MenuItem>
+          <MenuItem
+          onClick={e => {
+            e.stopPropagation();
+          }}
+        >
+          <Box>
+            <Typography display="block">Send all notebook</Typography>
+          </Box>
+        </MenuItem>
       </Menu>
     </Box>
   );

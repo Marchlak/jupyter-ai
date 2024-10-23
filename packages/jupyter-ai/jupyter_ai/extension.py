@@ -15,6 +15,7 @@ from traitlets import Dict, Integer, List, Unicode
 from .chat_handlers import (
     AskChatHandler,
     ClearChatHandler,
+    AllChatHandler,
     DefaultChatHandler,
     ExportChatHandler,
     FixChatHandler,
@@ -378,6 +379,8 @@ class AiExtension(ExtensionApp):
 
         fix_chat_handler = FixChatHandler(**chat_handler_kwargs)
 
+        all_chat_handler = AllChatHandler(**chat_handler_kwargs)
+
         chat_handlers["default"] = default_chat_handler
         chat_handlers["/ask"] = ask_chat_handler
         chat_handlers["/clear"] = clear_chat_handler
@@ -385,6 +388,7 @@ class AiExtension(ExtensionApp):
         chat_handlers["/learn"] = learn_chat_handler
         chat_handlers["/export"] = export_chat_handler
         chat_handlers["/fix"] = fix_chat_handler
+        chat_handlers["/all"] = all_chat_handler
 
         slash_command_pattern = r"^[a-zA-Z0-9_]+$"
         for chat_handler_ep in chat_handler_eps:

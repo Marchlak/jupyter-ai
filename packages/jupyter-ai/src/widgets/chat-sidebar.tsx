@@ -7,6 +7,7 @@ import type { Awareness } from 'y-protocols/awareness';
 import { Chat } from '../components/chat';
 import { chatIcon } from '../icons';
 import { SelectionWatcher } from '../selection-watcher';
+import { NotebookWatcher } from '../notebook-watcher';
 import { ChatHandler } from '../chat_handler';
 import {
   IJaiCompletionProvider,
@@ -18,6 +19,7 @@ import type { ActiveCellManager } from '../contexts/active-cell-context';
 
 export function buildChatSidebar(
   selectionWatcher: SelectionWatcher,
+  notebookWatcher: NotebookWatcher,
   chatHandler: ChatHandler,
   globalAwareness: Awareness | null,
   themeManager: IThemeManager | null,
@@ -32,6 +34,7 @@ export function buildChatSidebar(
   const ChatWidget = ReactWidget.create(
     <Chat
       selectionWatcher={selectionWatcher}
+      notebookWatcher={notebookWatcher}
       chatHandler={chatHandler}
       globalAwareness={globalAwareness}
       themeManager={themeManager}

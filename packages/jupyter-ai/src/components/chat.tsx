@@ -17,6 +17,7 @@ import { ChatSettings } from './chat-settings';
 import { AiService } from '../handler';
 import { SelectionContextProvider } from '../contexts/selection-context';
 import { SelectionWatcher } from '../selection-watcher';
+import { NotebookWatcher } from '../notebook-watcher';
 import { ChatHandler } from '../chat_handler';
 import { CollaboratorsContextProvider } from '../contexts/collaborators-context';
 import {
@@ -173,6 +174,7 @@ function ChatBody({
 
 export type ChatProps = {
   selectionWatcher: SelectionWatcher;
+  notebookWatcher: NotebookWatcher;
   chatHandler: ChatHandler;
   globalAwareness: Awareness | null;
   themeManager: IThemeManager | null;

@@ -168,7 +168,7 @@ export class SelectionWatcher {
 
     if (prevSelection?.text === currSelection?.text) {
       return;
-    }
+      } 
 
     this._selection = currSelection;
     this._selectionChanged.emit(currSelection);

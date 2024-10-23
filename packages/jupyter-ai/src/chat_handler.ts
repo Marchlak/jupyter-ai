@@ -41,6 +41,7 @@ export class ChatHandler implements IDisposable {
    */
   public sendMessage(message: AiService.Request): Promise<string> {
     return new Promise(resolve => {
+      console.log('Wysyłana wiadomość:', message);
       this._socket?.send(JSON.stringify(message));
       this._sendResolverQueue.push(resolve);
     });

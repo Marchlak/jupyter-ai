@@ -28,6 +28,7 @@ import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 import { ActiveCellManager } from './contexts/active-cell-context';
 import { Signal } from '@lumino/signaling';
 import { menuPlugin } from './plugins/menu-plugin';
+import { NotebookWatcher } from './notebook-watcher';
 
 export type DocumentTracker = IWidgetTracker<IDocumentWidget>;
 
@@ -69,6 +70,11 @@ const plugin: JupyterFrontEndPlugin<IJaiCore> = {
      */
     const selectionWatcher = new SelectionWatcher(app.shell);
 
+    const notebookWatcher = new NotebookWatcher(app.shell);
+       notebookWatcher.selectionChanged.connect((sender, selections) => {
+       console.log('Selection changed detected:', selections);
+      });
+
     /**
      * Initialize active cell manager singleton
      */
@@ -92,6 +98,7 @@ const plugin: JupyterFrontEndPlugin<IJaiCore> = {
       await chatHandler.initialize();
       chatWidget = buildChatSidebar(
         selectionWatcher,
+        notebookWatcher,
         chatHandler,
         globalAwareness,
         themeManager,
@@ -129,7 +136,8 @@ const plugin: JupyterFrontEndPlugin<IJaiCore> = {
       activeCellManager,
       chatHandler,
       chatWidget,
-      selectionWatcher
+      selectionWatcher,
+      notebookWatcher,
     };
   }
 };

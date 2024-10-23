@@ -210,6 +210,7 @@ export function ChatInput(props: ChatInputProps): JSX.Element {
   function onSend(selection?: AiService.Selection) {
     const prompt = input;
     setInput('');
+    console.log("SELECTION:",selection);
 
     // if the current slash command is `/fix`, we always include a code cell
     // with error output in the selection.

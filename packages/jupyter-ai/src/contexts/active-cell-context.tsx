@@ -24,12 +24,24 @@ function getNotebook(widget: Widget | null): Notebook | null {
 
 function getActiveCell(widget: Widget | null): Cell | null {
   const notebook = getNotebook(widget);
+
+    const cellModels = notebook?.model?.cells;
+
+    if(cellModels != null)
+    for (let i = 0; i < cellModels.length; i++) {
+     // const cellModel = cellModels.get(i);
+     // console.log(cellModel.sharedModel.getSource());
+    }
+
+
   if (!notebook) {
     return null;
   }
 
   return notebook.activeCell;
 }
+
+
 
 type CellContent = {
   type: string;
