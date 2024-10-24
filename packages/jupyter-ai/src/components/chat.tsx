@@ -34,6 +34,7 @@ import { UserContextProvider, useUserContext } from '../contexts/user-context';
 import { ScrollContainer } from './scroll-container';
 import { TooltippedIconButton } from './mui-extras/tooltipped-icon-button';
 import { TelemetryContextProvider } from '../contexts/telemetry-context';
+import { NotebookSelectionContextProvider } from '../contexts/all-notebook-context';
 
 type ChatBodyProps = {
   chatHandler: ChatHandler;
@@ -228,6 +229,7 @@ export function Chat(props: ChatProps): JSX.Element {
   return (
     <JlThemeProvider themeManager={props.themeManager}>
       <SelectionContextProvider selectionWatcher={props.selectionWatcher}>
+        <NotebookSelectionContextProvider notebookWatcher={props.notebookWatcher}>
         <CollaboratorsContextProvider globalAwareness={props.globalAwareness}>
           <ActiveCellContextProvider
             activeCellManager={props.activeCellManager}
@@ -303,6 +305,7 @@ export function Chat(props: ChatProps): JSX.Element {
             </TelemetryContextProvider>
           </ActiveCellContextProvider>
         </CollaboratorsContextProvider>
+        </NotebookSelectionContextProvider>
       </SelectionContextProvider>
     </JlThemeProvider>
   );

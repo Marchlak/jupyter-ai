@@ -70,7 +70,7 @@ export function getNotebookSelections(notebook: Notebook): NotebookSelections {
     }
   }
 
-  console.log(selections);
+  //console.log(selections);
 
   return selections;
 }
@@ -98,7 +98,7 @@ export class NotebookWatcher {
     const currSelections = notebook ? getNotebookSelections(notebook) : [];
 
     //console.log(notebook);
-    //console.log('Current notebook selections in notebook:', currSelections);
+    //console.log('To jest Notbook selection', currSelections);
 
     if (JSON.stringify(this._selections) === JSON.stringify(currSelections)) {
       return;

@@ -28,6 +28,7 @@ export function NotebookSelectionContextProvider({
 
     notebookWatcher.selectionChanged.connect((sender, newSelections) => {
       if (newSelections) {
+        console.log('NotebookSelectionContextProvider: Otrzymano nowe zaznaczenia:', newSelections);
         setSelections(newSelections);
       }
     });

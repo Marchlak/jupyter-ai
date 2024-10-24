@@ -9,6 +9,7 @@ import { includeSelectionIcon } from '../../icons';
 import { useActiveCellContext } from '../../contexts/active-cell-context';
 import { useSelectionContext } from '../../contexts/selection-context';
 import { AiService } from '../../handler';
+import { useNotebookSelectionContext } from '../../contexts/all-notebook-context';
 
 const FIX_TOOLTIP = '/fix requires an active code cell with an error';
 
@@ -30,6 +31,7 @@ export function SendButton(props: SendButtonProps): JSX.Element {
   const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLElement | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [textSelection] = useSelectionContext();
+  const notebookSelection = useNotebookSelectionContext();
   const activeCell = useActiveCellContext();
 
   const openMenu = useCallback((el: HTMLElement | null) => {
@@ -82,6 +84,15 @@ export function SendButton(props: SendButtonProps): JSX.Element {
       ? 'Message must not be empty'
       : defaultTooltip;
 
+
+
+  function sendWithNotebook() {
+      console.log(notebookSelection);
+      closeMenu();
+      return;
+    
+  }
+
   function sendWithSelection() {
     // if the current slash command is `/fix`, `props.onSend()` should always
     // include the code cell with error output, so the `selection` argument does
@@ -91,6 +102,7 @@ export function SendButton(props: SendButtonProps): JSX.Element {
       closeMenu();
       return;
     }
+
 
     // otherwise, parse the text selection or active cell, with the text
     // selection taking precedence.
@@ -200,6 +212,7 @@ export function SendButton(props: SendButtonProps): JSX.Element {
         </MenuItem>
           <MenuItem
           onClick={e => {
+            sendWithNotebook();
             e.stopPropagation();
           }}
         >
